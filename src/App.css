@@ -15,10 +15,11 @@ html,
 }
 
 .App__nav {
-    background-color: forestgreen;
+    background-color: tan;
     color: white;
     width: 30%;
     height: 100vh;
+    border: #F7DBD7 solid 8px;
 }
 
 .Head__main {
@@ -29,13 +30,15 @@ html,
 }
 
 .App__header {
-    background-color: darkgreen;
+    background-color: tan;
     color: white;
     height: 150px;
+    border: #F7DBD7 solid 8px;
 }
 
 .App__main {
-    background-color: darkolivegreen;
-    color: white;
+    background-color: white;
+    color: #6B5B2C;
     height: 100%;
+    border: #F7DBD7 solid 8px;
 }
