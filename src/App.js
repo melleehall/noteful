@@ -16,15 +16,14 @@ import NotFoundSidebar from './NotFoundSidebar/NotFoundSidebar';
 
 
 export default class App extends Component {
-  state = {
-    notes: [],
-    folders: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: dummyNotes.notes,
+      folders: dummyNotes.folders,
+    }
+  }
 
-  componentDidMount() {
-    // fake date loading from API call
-    setTimeout(() => this.setState(dummyNotes), 600);
-}
 
   render() {
     return (
@@ -33,14 +32,22 @@ export default class App extends Component {
           <Switch>
               <Route 
                 exact path='/' 
-                render={() => 
+                render={(routerProps) => 
                   <HomePathSidebar 
                     folders = {this.state.folders}
+                    notes = {this.state.notes}
                   />
                 }
               />
               <Route path='/folder/:folderID' component={FolderPathSidebar} />
-              <Route path='/note/:noteID' component={NotePathSidebar} />
+              <Route path='/note/:noteID' 
+                  render={(routerProps) => 
+                  <NotePathSidebar 
+                    folders = {this.state.folders}
+                    notes = {this.state.notes} 
+                  />
+                  } 
+                />
               <Route component={NotFoundSidebar} />
           </Switch>
         </nav>
@@ -50,9 +57,24 @@ export default class App extends Component {
           </header>
           <main className='App__main'>
             <Switch>
-              <Route exact path='/' component={HomePathMain} />
+              <Route 
+                exact path='/' 
+                render={(routerProps) => 
+                  <HomePathMain 
+                    notes = {this.state.notes}
+                  />
+                }
+              />
               <Route path='/folder/:folderID' component={FolderPathMain} />
-              <Route path='/note/:noteID' component={NotePathMain} />
+              <Route 
+                path='/note/:noteID' 
+                render={(routerProps) => 
+                  <NotePathMain
+                    folders = {this.state.folders}
+                    notes = {this.state.notes} 
+                  />
+                  }
+                />
               <Route component={NotFoundMain} />
             </Switch>
           </main>

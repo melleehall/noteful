@@ -1,0 +1,23 @@
+li {
+    list-style-type: none;
+    background-color: #F7DBD7;
+    color: black;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    height: 35px;
+    width: 35px;
+    margin-top: 15px;
+}

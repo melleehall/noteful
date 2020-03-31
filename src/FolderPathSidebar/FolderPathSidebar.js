@@ -7,6 +7,8 @@ export default function RenderFolderPathSidebar() {
         <section>
             <ul>
                 <Folder />
+                <Folder />
+                <Folder />
             </ul>
             <div>
                 <CircleButton />
