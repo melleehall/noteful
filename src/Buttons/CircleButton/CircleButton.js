@@ -5,7 +5,7 @@ import './CircleButton.css'
 export default function RenderCircleButton(props) {
     return (
         <Link to={'/'} className='circle_button'>
-            Home
+            {props.title}
         </Link>
     )
 }

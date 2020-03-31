@@ -6,3 +6,7 @@
     border: #F7DBD7 1px solid;
     max-width: 160px;
 }
+
+li .active {
+    background-color: red;
+}

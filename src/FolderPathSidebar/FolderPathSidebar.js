@@ -2,17 +2,27 @@ import React from 'react'
 import Folder from '../Folder/Folder'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
 
-export default function RenderFolderPathSidebar() {
+export default function RenderFolderPathSidebar(props) {
+    const folders = props.folders.map(folder => 
+        <Folder 
+            key = {folder.id}
+            id = {folder.id}
+            name = {folder.name}
+        />
+    )
+
     return (
         <section>
             <ul>
-                <Folder />
-                <Folder />
-                <Folder />
+                {folders}
             </ul>
             <div>
-                <CircleButton />
+                <CircleButton 
+                    title = '+ Folder'
+                />
             </div>
-        </section>    
+        </section>
     )
 }
+
+

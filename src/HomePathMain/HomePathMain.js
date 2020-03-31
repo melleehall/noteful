@@ -1,12 +1,13 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import Notes from '../Note/Note'
+import Note from '../Note/Note'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
 
 function RenderHomePathMain(props) {
     const notes = props.notes.map(note => 
-        <Notes
+        <Note
             id={note.id}
+            key={note.id}
             name={note.name}
             modified={note.modified}
             folderId={note.folderId}
@@ -20,7 +21,9 @@ function RenderHomePathMain(props) {
                {notes}
             </ul>
             <div>
-                <CircleButton />
+                <CircleButton 
+                    title = {"+ Note"}
+                />
             </div>
         </section>
     )

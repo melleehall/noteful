@@ -16,7 +16,9 @@ export default function RenderHomePathSidebar(props) {
                 {folders}
             </ul>
             <div>
-                <CircleButton />
+                <CircleButton 
+                    title = '+ Folder'
+                />
             </div>
         </section>
     )

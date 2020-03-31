@@ -5,9 +5,9 @@ import './Note.css'
 export default function RenderNote(props) {
     return (
         <li key={props.id}>
-                <div className='flex-column'>
+            <div className='flex-column'>
                 <h2>
-                    <Link to={`/note/:${props.id}`}>
+                    <Link to={`/note/${props.id}`}>
                         {props.name}
                     </Link>
                 </h2>

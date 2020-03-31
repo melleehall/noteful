@@ -39,15 +39,29 @@ export default class App extends Component {
                   />
                 }
               />
-              <Route path='/folder/:folderID' component={FolderPathSidebar} />
-              <Route path='/note/:noteID' 
-                  render={(routerProps) => 
-                  <NotePathSidebar 
-                    folders = {this.state.folders}
-                    notes = {this.state.notes} 
+              <Route 
+                path='/folder/:folderID' 
+                render={routeProps => (
+                  <FolderPathSidebar 
+                    folders={this.state.folders}
                   />
-                  } 
-                />
+                )}
+              />
+              <Route 
+                path='/note/:noteID' 
+                component={(props) => {
+                  const noteID = props.match.params.noteID;
+                  const note = this.state.notes.find(note => {
+                    return note.id === noteID
+                  })
+                  const folder = this.state.folders.find(folder => {
+                    return folder.id === note.folderId
+                  })
+                  return <NotePathSidebar 
+                    folder = {folder}
+                  />
+                }}
+              />
               <Route component={NotFoundSidebar} />
           </Switch>
         </nav>
@@ -65,16 +79,28 @@ export default class App extends Component {
                   />
                 }
               />
-              <Route path='/folder/:folderID' component={FolderPathMain} />
+              <Route 
+                path='/folder/:folderID' 
+                component={(routeProps) => {
+                  const folderId = routeProps.match.params;
+                  return <FolderPathMain
+                    folderId = {folderId.folderID}
+                    notes = {this.state.notes}
+                  />
+                }}
+              />
               <Route 
                 path='/note/:noteID' 
-                render={(routerProps) => 
-                  <NotePathMain
-                    folders = {this.state.folders}
-                    notes = {this.state.notes} 
+                component={(props) => {
+                  const noteID = props.match.params.noteID;
+                  const note = this.state.notes.find(note => {
+                    return note.id === noteID
+                  })
+                  return <NotePathMain
+                    note = {note}
                   />
-                  }
-                />
+                }}
+              />
               <Route component={NotFoundMain} />
             </Switch>
           </main>
