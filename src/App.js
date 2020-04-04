@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import dummyNotes from './dummyNotes'
+import NotesContext from './NotesContext'
+import config from './config'
 import './App.css'
 
 import Header from './Header/Header';
@@ -16,35 +18,89 @@ import NotFoundSidebar from './NotFoundSidebar/NotFoundSidebar';
 
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      notes: dummyNotes.notes,
-      folders: dummyNotes.folders,
-    }
+  state = {
+    notes: [],
+    folders: [],
+    error: null,
+  }
+
+  setNotes = notes => {
+    this.setState({
+      notes,
+      error: null,
+    })
+  }
+
+  setFolders = folders => {
+    this.setState({
+      folders,
+      error: null,
+    })
+  }
+
+  removeNoteFromState = noteId => {
+    const newNotes = this.state.notes.filter(n => 
+      n.id !== noteId
+    )
+    this.setState({
+      notes: newNotes
+    })
+  }
+
+  componentDidMount() {
+    fetch(config.API_ENDPOINT_NOTES, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res.status)
+      }
+      return res.json()
+    })
+    .then(this.setNotes)
+    .catch(e => this.setState({ e }));
+
+    fetch(config.API_ENDPOINT_FOLDERS, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res.status)
+      }
+      return res.json()
+    })
+    .then(this.setFolders)
+    .catch(e => this.setState({ e }))
   }
 
 
   render() {
+    const contextValue = {
+      notes: this.state.notes,
+      folders: this.state.folders
+    }
+
     return (
       <div className='App'>
+        <NotesContext.Provider value={contextValue}>
         <nav className='App__nav'>
           <Switch>
               <Route 
                 exact path='/' 
-                render={(routerProps) => 
-                  <HomePathSidebar 
-                    folders = {this.state.folders}
-                    notes = {this.state.notes}
-                  />
+                component={HomePathSidebar}
+              />
                 }
               />
               <Route 
                 path='/folder/:folderID' 
-                render={routeProps => (
-                  <FolderPathSidebar 
-                    folders={this.state.folders}
-                  />
+                component={FolderPathSidebar}
+              />
                 )}
               />
               <Route 
@@ -73,10 +129,8 @@ export default class App extends Component {
             <Switch>
               <Route 
                 exact path='/' 
-                render={(routerProps) => 
-                  <HomePathMain 
-                    notes = {this.state.notes}
-                  />
+                component={HomePathMain}
+              />
                 }
               />
               <Route 
@@ -86,7 +140,7 @@ export default class App extends Component {
                   return <FolderPathMain
                     folderId = {folderId.folderID}
                     notes = {this.state.notes}
-                  />
+              />
                 }}
               />
               <Route 
@@ -105,6 +159,7 @@ export default class App extends Component {
             </Switch>
           </main>
         </div>
+        </NotesContext.Provider>
       </div>
     );
   }

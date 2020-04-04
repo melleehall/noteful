@@ -1,10 +1,13 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Note from '../Note/Note'
+import dummyNotes from '../dummyNotes'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
 
 function RenderHomePathMain(props) {
-    const notes = props.notes.map(note => 
+    const storeNotes = dummyNotes.notes
+
+    const notes = storeNotes.map(note => 
         <Note
             id={note.id}
             key={note.id}

@@ -1,9 +1,12 @@
 import React from 'react'
 import Folder from '../Folder/Folder'
+import dummyNotes from '../dummyNotes'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
 
 export default function RenderFolderPathSidebar(props) {
-    const folders = props.folders.map(folder => 
+    const storeFolders = dummyNotes.folders
+
+    const folders = storeFolders.map(folder => 
         <Folder 
             key = {folder.id}
             id = {folder.id}
