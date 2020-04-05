@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import dummyNotes from './dummyNotes'
 import NotesContext from './NotesContext'
 import config from './config'
 import './App.css'
@@ -39,6 +38,7 @@ export default class App extends Component {
   }
 
   removeNoteFromState = noteId => {
+    console.log(noteId)
     const newNotes = this.state.notes.filter(n => 
       n.id !== noteId
     )
@@ -83,7 +83,8 @@ export default class App extends Component {
   render() {
     const contextValue = {
       notes: this.state.notes,
-      folders: this.state.folders
+      folders: this.state.folders,
+      deleteBookmark: this.removeNoteFromState,
     }
 
     return (
@@ -95,28 +96,13 @@ export default class App extends Component {
                 exact path='/' 
                 component={HomePathSidebar}
               />
-                }
-              />
               <Route 
                 path='/folder/:folderID' 
                 component={FolderPathSidebar}
               />
-                )}
-              />
               <Route 
                 path='/note/:noteID' 
-                component={(props) => {
-                  const noteID = props.match.params.noteID;
-                  const note = this.state.notes.find(note => {
-                    return note.id === noteID
-                  })
-                  const folder = this.state.folders.find(folder => {
-                    return folder.id === note.folderId
-                  })
-                  return <NotePathSidebar 
-                    folder = {folder}
-                  />
-                }}
+                component={NotePathSidebar} 
               />
               <Route component={NotFoundSidebar} />
           </Switch>
@@ -131,29 +117,13 @@ export default class App extends Component {
                 exact path='/' 
                 component={HomePathMain}
               />
-                }
-              />
               <Route 
                 path='/folder/:folderID' 
-                component={(routeProps) => {
-                  const folderId = routeProps.match.params;
-                  return <FolderPathMain
-                    folderId = {folderId.folderID}
-                    notes = {this.state.notes}
-              />
-                }}
+                component={FolderPathMain}
               />
               <Route 
                 path='/note/:noteID' 
-                component={(props) => {
-                  const noteID = props.match.params.noteID;
-                  const note = this.state.notes.find(note => {
-                    return note.id === noteID
-                  })
-                  return <NotePathMain
-                    note = {note}
-                  />
-                }}
+                component={NotePathMain} />
               />
               <Route component={NotFoundMain} />
             </Switch>

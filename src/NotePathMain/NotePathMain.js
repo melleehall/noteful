@@ -1,20 +1,28 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import Note from '../Note/Note'
+import dummyNotes from '../dummyNotes'
 
 export default function RenderNotePathMain(props) {
     // find note object with an id that matches the 
     // props.match.params.noteID of the selected note
 
+    const noteID = props.match.params.noteID;
+    
+    // replace this w/ notes from context
+    const notes = dummyNotes['notes']
+    const note = notes.find(note => {
+                    return note.id === noteID
+                })            
+    
     return(
         <section className='note'>
             <Note 
-                id={props.note.id}
-                name={props.note.name}
-                modified={props.note.modified}
+                id={note.id}
+                name={note.name}
+                modified={note.modified}
             />
             <div className='note_content'>
-                {props.note.content}
+                {note.content}
             </div>
         </section>
     )
