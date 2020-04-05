@@ -5,7 +5,7 @@ import config from './config'
 import './App.css'
 
 import Header from './Header/Header';
-import HomePathMain from './HomePathMain/HomePathMain';
+import HomePathMain from './HomePathMain/HomePathMain'
 import HomePathSidebar from './HomePathSidebar/HomePathSidebar';
 import FolderPathMain from './FolderPathMain/FolderPathMain';
 import FolderPathSidebar from './FolderPathSidebar/FolderPathSidebar';
