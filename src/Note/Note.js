@@ -5,8 +5,7 @@ import './Note.css'
 import NotesContext from '../NotesContext'
 
 function deleteNoteRequest(noteId, cb) {
-    console.log(noteId);
-    console.log(cb)
+  
     // fetch request is effectively deleting note from DB
     fetch(config.API_ENDPOINT_NOTES + `/${noteId}`, {
         method: 'DELETE',

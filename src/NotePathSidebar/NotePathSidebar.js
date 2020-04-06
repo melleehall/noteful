@@ -11,7 +11,10 @@ export default function RenderNotePathSidebar(props) {
         const selectedNote = context.notes.find(note => 
            note.id.toString() === noteId.toString()
         )
-        if(!selectedNote) return;
+        if(!selectedNote) {
+            props.history.push('/')
+            return;
+        }
         console.log(selectedNote)
 
         const folderID = selectedNote['folderId']
