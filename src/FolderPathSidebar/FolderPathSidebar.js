@@ -1,23 +1,28 @@
 import React from 'react'
 import Folder from '../Folder/Folder'
-import dummyNotes from '../dummyNotes'
+import NotesContext from '../NotesContext'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
 
 export default function RenderFolderPathSidebar(props) {
-    const storeFolders = dummyNotes.folders
-
-    const folders = storeFolders.map(folder => 
-        <Folder 
-            key = {folder.id}
-            id = {folder.id}
-            name = {folder.name}
-        />
-    )
+    function generateFolderInstances (folders) {
+        const folderInstances = folders.map(folder =>
+            <Folder
+                id={folder.id}
+                key={folder.id}
+                name={folder.name}
+            />     
+        )
+        return folderInstances
+    }
 
     return (
         <section>
             <ul>
-                {folders}
+                <NotesContext.Consumer>
+                    {(context) => {
+                        return generateFolderInstances(context.folders)
+                    }}
+                </NotesContext.Consumer>
             </ul>
             <div>
                 <CircleButton 

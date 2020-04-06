@@ -1,41 +1,39 @@
 import React from 'react'
-import dummyNotes from '../dummyNotes'
+import NotesContext from '../NotesContext'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
-import { Route } from 'react-router-dom'
+import Note from '../Note/Note'
 
 
 export default function RenderFolderPathMain(props) {
-    // const folderId = Route.props.match.params;
-    // console.log(folderId)
-    
-    // const folderId = routeProps.match.params;
-    //     return <FolderPathMain
-    //       folderId = {folderId.folderID}
-    //       notes = {this.state.notes}
-    //     />
-    //   }}
+    // get the folderID from the url path
+    const folderId = props.match.params.folderID;
 
-
-    // const notesInFolder = props.notes.filter(note => 
-    //     note.folderId === props.folderId
-    // )
-    
-    // const notes = notesInFolder.map(note => 
-    //     <Note
-    //         id={note.id}
-    //         key={note.id}
-    //         name={note.name}
-    //         modified={note.modified}
-    //         folderId={note.folderId}
-    //         content={note.content}
-    //     /> 
-    // )
+    function generateNotesForFolderPath (notes) {
+        const notesInFolder = notes.filter(note => 
+            note.folderId === folderId
+        )
+        const noteInstances = notesInFolder.map(note => 
+            <Note
+                id={note.id}
+                key={note.id}
+                name={note.name}
+                modified={note.modified}
+                folderId={note.folderId}
+                content={note.content}
+            /> 
+        )
+        return noteInstances
+    }
     
     return (
         <section>
-            {/* <ul>
-                {notes}
-            </ul> */}
+            <ul>
+                <NotesContext.Consumer>
+                {(context) => {
+                    return generateNotesForFolderPath(context.notes)
+                }}
+                </NotesContext.Consumer>
+            </ul>
             <div>
                 <CircleButton 
                     title = "+ Note"
