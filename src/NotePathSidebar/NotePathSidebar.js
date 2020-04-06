@@ -6,21 +6,19 @@ import './NotePathSidebar.css'
 
 export default function RenderNotePathSidebar(props) {
     const noteId = props.match.params.noteID;
-    console.log(noteId)
 
     function findFolderName (context) {
-        const allNotes = context.notes
+        const selectedNote = context.notes.find(note => 
+           note.id.toString() === noteId.toString()
+        )
 
-        const selectedNote = allNotes.find(note => {
-            if (note.id.toString() === noteId.toString()) {
-                return note.folderId.toString()
-            }
-        })
-        console.log(selectedNote)
-        console.log(typeof(selectedNote))
-        console.log(selectedNote['folderId'])
+        const folderID = selectedNote['folderId']
+    
+        const folder = context.folders.find(folder => 
+            folder.id.toString() === folderID.toString()
+        )
         
-        return <div></div>
+        return <div>{folder['name']}</div>
     }
 
 

@@ -37,7 +37,7 @@ export default class App extends Component {
     })
   }
 
-  removeNoteFromState = noteId => {
+  handleRemoveNoteFromState = noteId => {
     console.log(noteId)
     const newNotes = this.state.notes.filter(n => 
       n.id !== noteId
@@ -79,12 +79,11 @@ export default class App extends Component {
     .catch(e => this.setState({ e }))
   }
 
-
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteBookmark: this.removeNoteFromState,
+      removeNoteFromState: this.handleRemoveNoteFromState,
     }
 
     return (
