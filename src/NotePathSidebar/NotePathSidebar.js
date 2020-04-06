@@ -11,12 +11,14 @@ export default function RenderNotePathSidebar(props) {
     function findFolderName (context) {
         const allNotes = context.notes
 
-        const selectedNote = allNotes.find(note => 
-            note.id === noteId
-        )
+        const selectedNote = allNotes.find(note => {
+            if (note.id.toString() === noteId.toString()) {
+                return note.folderId.toString()
+            }
+        })
         console.log(selectedNote)
         console.log(typeof(selectedNote))
-        // console.log(selectedNote[0]['folderId'])
+        console.log(selectedNote['folderId'])
         
         return <div></div>
     }
