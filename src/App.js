@@ -45,7 +45,6 @@ export default class App extends Component {
     this.setState({
       notes: newNotes
     })
-    this.props.history.push(`/`)
   }
 
   componentDidMount() {
