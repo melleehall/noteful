@@ -63,5 +63,19 @@ export default function RenderNote(props) {
 RenderNote.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    modified: PropTypes.string.isRequired
+    modified: (props, propName, componentName) => {
+        const prop = props[propName];
+    
+        if(!prop) {
+          return new Error(`${propName} is required in ${componentName}. Validation Failed`);
+        }
+    
+        if (typeof prop != 'string') {
+          return new Error(`Invalid prop, ${propName} is expected to be a string in ${componentName}. ${typeof prop} found.`);
+        }
+    
+        if (prop.length !== 24) {
+          return new Error(`Invalid prop, ${propName} date should be exactly 24 characters in length. Validation Failed.`);
+        }
+      },
 }
