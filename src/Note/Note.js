@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import config from '../config'
 import './Note.css'
 import NotesContext from '../NotesContext'
+import PropTypes from 'prop-types'
 
 function deleteNoteRequest(noteId, cb) {
   
-    // fetch request is effectively deleting note from DB
     fetch(config.API_ENDPOINT_NOTES + `/${noteId}`, {
         method: 'DELETE',
         headers: {
@@ -30,23 +30,25 @@ function deleteNoteRequest(noteId, cb) {
 }
 
 export default function RenderNote(props) {
+    const { name, id, modified } = props;
+ 
     return (
         <NotesContext.Consumer>
             {(context) => (
-                <li key={props.id}>
+                <li key={id}>
                 <div className='flex-column'>
                     <h2>
-                        <Link to={`/note/${props.id}`}>
-                            {props.name}
+                        <Link to={`/note/${id}`}>
+                            {name}
                         </Link>
                     </h2>
-                    <div>Modified: {props.modified}</div>
+                    <div>Modified: {modified}</div>
                 <button 
                     className="Note__delete" 
                     type="button"
                     onClick={() => {
                         deleteNoteRequest(
-                            props.id,
+                            id,
                             context.removeNoteFromState,
                         )
                     }}>
@@ -56,4 +58,10 @@ export default function RenderNote(props) {
             )}
         </NotesContext.Consumer>
     )
+}
+
+RenderNote.propTypes = {
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired
 }

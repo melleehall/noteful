@@ -1,0 +1,16 @@
+.add_note_container {
+    border: 2px dotted black;
+    padding: 25px;
+    margin: 15px;
+}
+
+.add_note_fields {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.submit_button {
+    width: auto;
+    font-size: 14px;
+}

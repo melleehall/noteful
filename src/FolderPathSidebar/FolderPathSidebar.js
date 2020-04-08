@@ -26,7 +26,8 @@ export default function RenderFolderPathSidebar(props) {
             </ul>
             <div>
                 <CircleButton 
-                    title = '+ Folder'
+                    path={'/add-folder'}
+                    title={'+ Folder'}
                 />
             </div>
         </section>

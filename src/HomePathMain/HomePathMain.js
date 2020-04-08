@@ -3,10 +3,12 @@ import { withRouter } from 'react-router-dom'
 import Note from '../Note/Note'
 import NotesContext from '../NotesContext'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
+import NotefulError from '../NotefulError'
 
 function RenderHomePathMain(props) {
     function generateNoteInstances (notes) {
         const noteInstances = notes.map(note =>
+            <NotefulError>
             <Note
                 id={note.id}
                 key={note.id}
@@ -14,7 +16,8 @@ function RenderHomePathMain(props) {
                 modified={note.modified}
                 folderId={note.folderId}
                 content={note.content}
-            />     
+            />  
+            </NotefulError>
         )
         return noteInstances
     }
@@ -30,6 +33,7 @@ function RenderHomePathMain(props) {
             </ul>
             <div>
                 <CircleButton 
+                    path={'/add-note'}
                     title = {"+ Note"}
                 />
             </div>

@@ -15,7 +15,6 @@ export default function RenderNotePathSidebar(props) {
             props.history.push('/')
             return;
         }
-        console.log(selectedNote)
 
         const folderID = selectedNote['folderId']
     
@@ -30,6 +29,7 @@ export default function RenderNotePathSidebar(props) {
     return (
         <section>
             <CircleButton 
+                path='/'
                 title = '< Back'
             />
             <h3 className='folder_name'>

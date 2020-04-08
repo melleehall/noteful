@@ -2,15 +2,18 @@ import React from 'react'
 import Folder from '../Folder/Folder'
 import CircleButton from '../Buttons/CircleButton/CircleButton'
 import NotesContext from '../NotesContext'
+import NotefulError from '../NotefulError'
 
 export default function RenderHomePathSidebar(props) {
     function generateFolderInstances (folders) {
         const folderInstances = folders.map(folder =>
+            <NotefulError>
             <Folder
                 id={folder.id}
                 key={folder.id}
                 name={folder.name}
             />     
+            </NotefulError>
         )
         return folderInstances
     }
@@ -26,7 +29,8 @@ export default function RenderHomePathSidebar(props) {
             </ul>
             <div>
                 <CircleButton 
-                    title = '+ Folder'
+                    path={'/add-folder'}
+                    title = {"+ Folder"}
                 />
             </div>
         </section>

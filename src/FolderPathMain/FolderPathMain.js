@@ -36,7 +36,8 @@ export default function RenderFolderPathMain(props) {
             </ul>
             <div>
                 <CircleButton 
-                    title = "+ Note"
+                    path={'/add-note'}
+                    title = {"+ Note"}
                 />
             </div>
         </section>
