@@ -16,7 +16,8 @@ export default class AddFolderMain extends Component {
             name: {
                 value: '',
                 touched: false
-            }
+            },
+            error: false,
         }
     }
 
@@ -33,9 +34,15 @@ export default class AddFolderMain extends Component {
         } 
     }
 
+    renderErrorMessage() {
+        const errorStat = this.state.error;
+        if (errorStat) {
+            return 'We are experiencing an issue adding your folder.  Please, try again later and contact your administrator if the issue persists.'
+        }
+    }
+
     handleSubmit(event) {
         event.preventDefault();
-        const { name } = this.state;
 
         const newFolder = {
             name: event.target['new-folder-name'].value
@@ -58,11 +65,15 @@ export default class AddFolderMain extends Component {
             this.context.addFolderToState(folder)
             this.props.history.push('/')
           })
-          .catch(e => console.log({ e }))
+          .catch(e => {
+            console.log(e);
+            this.setState({error: true})
+          })
     }
 
     render () {
         const nameError = this.validateName();
+        const fetchError = this.renderErrorMessage();
 
         return (
             <section className='add_folder_container'>
@@ -85,6 +96,7 @@ export default class AddFolderMain extends Component {
                             }>
                             Add Folder
                         </button>
+                        {<ValidationError message={fetchError} />}
                     </form>
             </section>
         )

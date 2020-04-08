@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import NotesContext from './NotesContext'
 import config from './config'
-import NotefulError from './NotefulError'
 import './App.css'
 
 import Header from './Header/Header';
@@ -70,15 +69,11 @@ export default class App extends Component {
     })
     .then(res => {
       if(!res.ok) {
-        // throw new Error(res.status)
         this.setState({error: res })
       }
       return res.json()
     })
     .then(this.setNotes)
-    // .catch(error => {
-    //   this.setState({error}) 
-    // });
 
     fetch(config.API_ENDPOINT_FOLDERS, {
       method: 'GET',
@@ -140,12 +135,10 @@ export default class App extends Component {
           </header>
           <main className='App__main'>
             <Switch>
-              {/* <NotefulError> */}
               <Route 
                 exact path='/' 
                 component={HomePathMain}
               />
-              {/* </NotefulError> */}
               <Route 
                 path='/folder/:folderID' 
                 component={FolderPathMain}

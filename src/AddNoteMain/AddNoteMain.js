@@ -24,7 +24,8 @@ export default class AddFolder extends Component {
             folderID: {
                 value: '',
                 touched: false
-            }
+            },
+            error: false,
         }
     }
 
@@ -66,9 +67,15 @@ export default class AddFolder extends Component {
         
     }
 
+    renderErrorMessage() {
+        const errorStat = this.state.error;
+        if (errorStat) {
+            return 'We are experiencing an issue adding your note.  Please, try again later and contact your administrator if the issue persists.'
+        }
+    }
+
     handleSubmit(event) {
         event.preventDefault();
-        const { name, content, folder } = this.state;
 
         const newNote = {
             name: event.target['new-note-name'].value,
@@ -94,7 +101,10 @@ export default class AddFolder extends Component {
             this.context.addNoteToState(note)
             this.props.history.push('/')
         })
-        .catch(e => console.log(e))
+        .catch(e => {
+            console.log(e);
+            this.setState({error: true})
+        })
     }
 
 
@@ -102,6 +112,7 @@ export default class AddFolder extends Component {
         const nameError = this.validateName();
         const contentError = this.validateContent();
         const folderError = this.validateFolder();
+        const fetchError = this.renderErrorMessage();
 
         return (
             <section className='add_note_container'>
@@ -145,6 +156,7 @@ export default class AddFolder extends Component {
                         >
                             Add Note
                         </button>
+                        {<ValidationError message={fetchError} />}
                     </form>
             </section>
         )
