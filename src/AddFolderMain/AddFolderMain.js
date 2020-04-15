@@ -85,8 +85,8 @@ export default class AddFolderMain extends Component {
                                 Name
                             </label>
                             <input type='text' name='new-folder-name' id='new-folder-name'
-                                onChange={e => this.updateName(e.target.value)}/>
-                            {this.state.name.touched && <ValidationError message={nameError} />}
+                                onChange={e => this.updateName(e.target.value)} aria-required="true" aria-describedby="folderNameError"/>
+                            {this.state.name.touched && <ValidationError id="folderNameError" message={nameError} />}
                         </div>
                         <button 
                             type='submit' 

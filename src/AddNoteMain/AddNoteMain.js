@@ -123,19 +123,19 @@ export default class AddFolder extends Component {
                                 Name
                             </label>
                             <input type='text' name='new-note-name' id='new-note-name'
-                                onChange={e => this.updateName(e.target.value)}/>
-                            {this.state.name.touched && <ValidationError message={nameError} />}
+                                onChange={e => this.updateName(e.target.value)} aria-required="true" />
+                            {this.state.name.touched && <ValidationError  message={nameError} />}
                             <label htmlFor='new-note-content'>
                                 Content
                             </label>
                             <input type='text' name='new-note-content' id='new-note-content'
-                                onChange={e => this.updateContent(e.target.value)}/>
+                                onChange={e => this.updateContent(e.target.value)} aria-required="true" />
                             {this.state.content.touched && <ValidationError message={contentError} />}
                             <label htmlFor='folder-select'>
                                 Folder
                             </label>
                             <select id='folder-select' name='folder-id' 
-                                onChange={e => this.updateFolder(e.target.value)}>
+                                onChange={e => this.updateFolder(e.target.value)} aria-required="true" >
                                 <option value={null}>Please, select a folder.</option>
                                 {this.context.folders.map(folder => 
                                     <option key={folder.id} value={folder.id}>
@@ -143,7 +143,7 @@ export default class AddFolder extends Component {
                                     </option>    
                                 )}
                             </select>
-                            {this.state.folderID.touched && <ValidationError message={folderError} />}
+                            {this.state.folderID.touched && <ValidationError id="noteFolderError" message={folderError} />}
                         </div>
                         <button 
                             type='submit' 
