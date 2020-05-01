@@ -6,7 +6,6 @@ import NotesContext from '../NotesContext'
 import PropTypes from 'prop-types'
 
 function deleteNoteRequest(noteId, cb) {
-  
     fetch(config.API_ENDPOINT_NOTES + `/${noteId}`, {
         method: 'DELETE',
         headers: {

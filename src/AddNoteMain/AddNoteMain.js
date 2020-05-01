@@ -78,10 +78,10 @@ export default class AddFolder extends Component {
         event.preventDefault();
 
         const newNote = {
-            name: event.target['new-note-name'].value,
+            note_name: event.target['new-note-name'].value,
             content: event.target['new-note-content'].value,
-            folderId: event.target['folder-id'].value,
-            modified: new Date()
+            folder_id: event.target['folder-id'].value,
+            modified_date: new Date()
         }
 
         fetch(`${config.API_ENDPOINT_NOTES}`, {

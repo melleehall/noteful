@@ -41,6 +41,7 @@ export default class App extends Component {
   }
 
   handleRemoveNoteFromState = noteId => {
+    console.log(noteId);
     const newNotes = this.state.notes.filter(n => 
       n.id !== noteId
     )

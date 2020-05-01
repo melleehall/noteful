@@ -45,7 +45,7 @@ export default class AddFolderMain extends Component {
         event.preventDefault();
 
         const newFolder = {
-            name: event.target['new-folder-name'].value
+            folder_name: event.target['new-folder-name'].value
         }
 
         fetch(`${config.API_ENDPOINT_FOLDERS}`, {
