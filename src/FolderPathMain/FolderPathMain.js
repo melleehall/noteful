@@ -10,8 +10,10 @@ export default function RenderFolderPathMain(props) {
 
     function generateNotesForFolderPath (notes) {
         const notesInFolder = notes.filter(note => 
-            note.folderId === folderId
+            console.log(note)
+            // note.folder_id === folderId
         )
+        
         const noteInstances = notesInFolder.map(note => 
             <Note
                 id={note.id}
