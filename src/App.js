@@ -26,6 +26,7 @@ export default class App extends Component {
   }
 
   setNotes = notes => {
+    console.log(notes)
     this.setState({
       notes,
       error: null,
@@ -61,6 +62,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    console.log(config.API_ENDPOINT_NOTES)
     fetch(config.API_ENDPOINT_NOTES, {
       method: 'GET',
       headers: {

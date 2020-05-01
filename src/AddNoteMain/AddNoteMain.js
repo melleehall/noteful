@@ -139,7 +139,7 @@ export default class AddFolder extends Component {
                                 <option value={null}>Please, select a folder.</option>
                                 {this.context.folders.map(folder => 
                                     <option key={folder.id} value={folder.id}>
-                                        {folder.name}
+                                        {folder.folder_name}
                                     </option>    
                                 )}
                             </select>

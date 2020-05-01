@@ -8,20 +8,23 @@ export default class RenderNotePathMain extends React.Component {
         const noteId = this.props.match.params.noteID
 
         function generateNoteforNotePath (notes) {
+
             const selectedNote = notes.filter(note => 
-                note.id === noteId
+                note.id.toString() === noteId.toString()
             )
+
             const noteInstance = selectedNote.map(note => 
                 <div>
                     <Note
                         id={note.id}
                         key={note.id}
-                        name={note.name}
-                        modified={note.modified}
+                        note_name={note.note_name}
+                        modified_date={note.modified_date}
                     /> 
                     <p>{note.content}</p>
                 </div>
             )
+            
             return noteInstance
         }
 

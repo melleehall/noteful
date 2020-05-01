@@ -7,14 +7,15 @@ import NotefulError from '../NotefulError'
 
 function RenderHomePathMain(props) {
     function generateNoteInstances (notes) {
+        console.log(notes)
         const noteInstances = notes.map(note =>
             <NotefulError>
             <Note
                 id={note.id}
                 key={note.id}
-                name={note.name}
-                modified={note.modified}
-                folderId={note.folderId}
+                note_name={note.note_name}
+                modified_date={note.modified_date}
+                folder_id={note.folder_id}
                 content={note.content}
             />  
             </NotefulError>

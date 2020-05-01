@@ -11,7 +11,7 @@ export default function RenderHomePathSidebar(props) {
             <Folder
                 id={folder.id}
                 key={folder.id}
-                name={folder.name}
+                folder_name={folder.folder_name}
             />     
             </NotefulError>
         )

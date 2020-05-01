@@ -16,9 +16,9 @@ export default function RenderFolderPathMain(props) {
             <Note
                 id={note.id}
                 key={note.id}
-                name={note.name}
-                modified={note.modified}
-                folderId={note.folderId}
+                folder_name={note.folder_name}
+                modified_date={note.modified_date}
+                folder_id={note.folder_id}
                 content={note.content}
             /> 
         )

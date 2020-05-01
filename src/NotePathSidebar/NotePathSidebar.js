@@ -14,15 +14,17 @@ export default function RenderNotePathSidebar(props) {
         if(!selectedNote) {
             props.history.push('/')
             return;
-        }
+        } 
 
-        const folderID = selectedNote['folderId']
+        const folder_id = selectedNote['folder_id']
     
         const folder = context.folders.find(folder => 
-            folder.id.toString() === folderID.toString()
+            folder.id.toString() === folder_id.toString()
         )
+
+        const folderName = folder['folder_name']
         
-        return <div>{folder['name']}</div>
+        return 'hello'
     }
 
 
@@ -34,7 +36,9 @@ export default function RenderNotePathSidebar(props) {
             />
             <h3 className='folder_name'>
                 <NotesContext.Consumer>
-                    {(context) => findFolderName(context)}
+                    {(context) => {
+                        findFolderName(context)}
+                    }
                 </NotesContext.Consumer>
             </h3>
         </section>

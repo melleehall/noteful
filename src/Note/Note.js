@@ -30,7 +30,7 @@ function deleteNoteRequest(noteId, cb) {
 }
 
 export default function RenderNote(props) {
-    const { name, id, modified } = props;
+    const { note_name, id, modified_date } = props;
  
     return (
         <NotesContext.Consumer>
@@ -39,10 +39,10 @@ export default function RenderNote(props) {
                 <div className='flex-column'>
                     <h2>
                         <Link to={`/note/${id}`}>
-                            {name}
+                            {note_name}
                         </Link>
                     </h2>
-                    <div>Modified: {modified}</div>
+                    <div>Modified: {modified_date}</div>
                 <button 
                     className="Note__delete" 
                     type="button"
@@ -61,9 +61,9 @@ export default function RenderNote(props) {
 }
 
 RenderNote.propTypes = {
-    name: PropTypes.string.isRequired,
+    note_name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    modified: (props, propName, componentName) => {
+    modified_date: (props, propName, componentName) => {
         const prop = props[propName];
     
         if(!prop) {

@@ -1,4 +1,4 @@
 export default {
-    API_ENDPOINT_NOTES: `http://localhost:9090/notes`,
-    API_ENDPOINT_FOLDERS: `http://localhost:9090/folders`
+    API_ENDPOINT_NOTES: `https://immense-crag-05203.herokuapp.com/api/notes`,
+    API_ENDPOINT_FOLDERS: `https://immense-crag-05203.herokuapp.com/api/folders`
 }
