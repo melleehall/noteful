@@ -25,7 +25,7 @@ export default function RenderNotePathSidebar(props) {
         const folderName = folder['folder_name']
         console.log(folderName)
 
-        return folderName
+        return <div>{folderName}</div>
     }
 
 
@@ -38,7 +38,7 @@ export default function RenderNotePathSidebar(props) {
             <h3 className='folder_name'>
                 <NotesContext.Consumer>
                     {(context) => {
-                        findFolderName(context)}
+                        return findFolderName(context)}
                     }
                 </NotesContext.Consumer>
             </h3>

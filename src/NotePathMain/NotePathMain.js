@@ -1,6 +1,7 @@
 import React from 'react'
 import Note from '../Note/Note'
 import NotesContext from '../NotesContext'
+import './NotePathMain.css'
 
 export default class RenderNotePathMain extends React.Component {
     render() {
@@ -21,7 +22,7 @@ export default class RenderNotePathMain extends React.Component {
                         note_name={note.note_name}
                         modified_date={note.modified_date}
                     /> 
-                    <p>{note.content}</p>
+                    <p className='note-content'>{note.content}</p>
                 </div>
             )
             

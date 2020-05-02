@@ -8,5 +8,5 @@
 }
 
 li .active {
-    background-color: red;
+    border: white solid 3px;
 }
