@@ -8,9 +8,9 @@ import NotefulError from '../NotefulError'
 function RenderHomePathMain(props) {
     function generateNoteInstances (notes) {
         const noteInstances = notes.map(note =>
-            <NotefulError>
+            <NotefulError key={note.id}>
             <Note
-                id={note.id}
+                id={note.id.toString()}
                 key={note.id}
                 note_name={note.note_name}
                 modified_date={note.modified_date}

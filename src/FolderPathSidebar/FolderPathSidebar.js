@@ -7,7 +7,7 @@ export default function RenderFolderPathSidebar(props) {
     function generateFolderInstances (folders) {
         const folderInstances = folders.map(folder =>
             <Folder
-                id={folder.id}
+                id={folder.id.toString()}
                 key={folder.id}
                 folder_name={folder.folder_name}
             />     

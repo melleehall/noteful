@@ -7,9 +7,9 @@ import NotefulError from '../NotefulError'
 export default function RenderHomePathSidebar(props) {
     function generateFolderInstances (folders) {
         const folderInstances = folders.map(folder =>
-            <NotefulError>
+            <NotefulError key={folder.id}>
             <Folder
-                id={folder.id}
+                id={folder.id.toString()}
                 key={folder.id}
                 folder_name={folder.folder_name}
             />     
