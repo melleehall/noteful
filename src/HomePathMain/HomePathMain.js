@@ -7,7 +7,6 @@ import NotefulError from '../NotefulError'
 
 function RenderHomePathMain(props) {
     function generateNoteInstances (notes) {
-        console.log(notes)
         const noteInstances = notes.map(note =>
             <NotefulError>
             <Note

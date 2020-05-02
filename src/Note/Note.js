@@ -18,7 +18,6 @@ function deleteNoteRequest(noteId, cb) {
             throw error
           })
         }
-        return res.json()
       })
     .then(data => {
         cb(noteId)
