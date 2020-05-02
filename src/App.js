@@ -40,9 +40,11 @@ export default class App extends Component {
   }
 
   handleRemoveNoteFromState = noteId => {
-    const newNotes = this.state.notes.filter(n => 
-      n.id !== noteId
-    )
+    console.log(noteId)
+    const newNotes = this.state.notes.filter(n => {
+      return n.id.toString() !== noteId.toString()
+    })
+    console.log(newNotes)
     this.setState({
       notes: newNotes
     })
