@@ -14,7 +14,6 @@ export default class NotefulError extends Component {
 
     render() {
         if (this.state.hasError) {
-            console.log(this.state);
             return (
                 <h2>An error has occured. Please, try again later and if the problem persists, contact your administrator. </h2>
             )

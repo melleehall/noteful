@@ -102,7 +102,6 @@ export default class AddFolder extends Component {
             this.props.history.push('/')
         })
         .catch(e => {
-            console.log(e);
             this.setState({error: true})
         })
     }

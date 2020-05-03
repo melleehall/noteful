@@ -23,7 +23,6 @@ export default function RenderNotePathSidebar(props) {
         )
 
         const folderName = folder['folder_name']
-        console.log(folderName)
 
         return <div>{folderName}</div>
     }
